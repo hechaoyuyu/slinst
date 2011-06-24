@@ -44,7 +44,7 @@ class linst(dbus.service.Object):
         f.write(content)
         f.close()
         os.system("chmod +x %s" %filename)
-        os.system("update-grub &")
+        os.system("update-grub")
         logging.debug("update-grub")
         #sys.exit()
 

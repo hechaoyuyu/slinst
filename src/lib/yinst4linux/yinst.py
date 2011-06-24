@@ -23,10 +23,9 @@ class yinst():
         #主界面
         self.window = gtk.Window()
         self.window.set_border_width(12)
-        self.window.set_size_request(320,180)
-        #gtk.window_set_default_icon_name('yinst.ico')
+        self.window.set_default_size(320,180)
         #设置窗口图标
-        gtk.window_set_default_icon_from_file('yinst.ico')
+        gtk.window_set_default_icon_from_file('yinst4linux.png')
         # set window center
         self.window.set_position(gtk.WIN_POS_CENTER_ALWAYS)
 
@@ -280,10 +279,10 @@ class yinst():
     def reboot(self,*args):
         logging.debug("reboot computer")
         #用dbus调用系统reboot
-        bus = dbus.SessionBus()
-        devobj = bus.get_object('org.gnome.SessionManager', '/org/gnome/SessionManager')
-	power = dbus.Interface(devobj, "org.gnome.SessionManager")
-        power.RequestReboot()
+        bus = dbus.SystemBus()
+        devobj = bus.get_object('org.freedesktop.ConsoleKit', '/org/freedesktop/ConsoleKit/Manager')
+	power = dbus.Interface(devobj, "org.freedesktop.ConsoleKit.Manager")
+        power.Restart()
 
     def progress_message(self, message):
         self.progress_title.set_markup('<big><b>' + message + '</b></big>')
