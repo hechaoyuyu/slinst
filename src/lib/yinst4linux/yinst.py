@@ -24,6 +24,10 @@ class yinst():
         self.window = gtk.Window()
         self.window.set_border_width(12)
         self.window.set_default_size(320,180)
+	
+	#不可调整窗口大小
+        self.window.set_resizable(False)
+	
         #设置窗口图标
         gtk.window_set_default_icon_from_file('yinst4linux.png')
         # set window center
@@ -52,7 +56,6 @@ class yinst():
         self.scroll_win = gtk.ScrolledWindow()
         self.scroll_win.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.scroll_win.set_shadow_type (gtk.SHADOW_IN)
-        #self.scroll_win.set_size_request(300,100)
 
         list_store = gtk.ListStore(str)
 	self.treeview = gtk.TreeView(list_store)
@@ -81,9 +84,6 @@ class yinst():
         #设置窗口标题
         self.install_window.set_title(_("Installing"))
         self.install_window.connect_object('destroy',gtk.Widget.destroy,self.window)
-
-        #不可调整窗口大小
-        self.install_window.set_resizable(False)
 
         #设置为模态窗口（类似于对话框）
         self.install_window.set_modal(True)

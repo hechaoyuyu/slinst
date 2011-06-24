@@ -12,10 +12,6 @@ import dbus.service
 import os
 import sys
 import dbus.mainloop.glib
-import logging
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s %(levelname)-8s %(message)s',
-                    filename='/tmp/yinst.log')
 
 YINST_IFACE = 'com.ylmf.yinst'
 YINST_PATH = '/com/ylmf/yinst'
@@ -33,7 +29,6 @@ class linst(dbus.service.Object):
 
         template_file = "%s/05_livecd" %root_dir
         template = self.read_file(template_file)
-        logging.debug("template_file %s" %template_file)
         dic = dict(iso_path = isopath,locale = locale)
         content = template
         for k,v in dic.items():
@@ -45,7 +40,6 @@ class linst(dbus.service.Object):
         f.close()
         os.system("chmod +x %s" %filename)
         os.system("update-grub")
-        logging.debug("update-grub")
         #sys.exit()
 
     def read_file(self,file_path):
