@@ -11,6 +11,7 @@ import globals
 import logging
 import locale
 import dbus
+import re
 from threading import Thread
 
 gettext.install('yinst', localedir='/usr/share/locale', unicode=True)
@@ -326,9 +327,20 @@ class yinst():
         logging.debug("Installation complete")
 
     def grub_config(self, target):
-
+	
+	def get_home():
+            reg = re.compile("/home")
+            file = open("/etc/fstab")
+            for line in file:
+                if line[0] == "#":
+                    continue
+                if reg.search(line) != None:
+                    logging.debug(line)
+                    return True
+	
         logging.debug("setup grub")
-        target = target.replace("/home","")
+	if get_home():
+            target = target.replace("/home","")
         self.progress_message(_('Setup grub...'))
         language, encoding = locale.getdefaultlocale()
         zh_cn = "%s.%s" %(language, encoding)

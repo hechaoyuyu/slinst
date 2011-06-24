@@ -81,25 +81,3 @@ def format_size(size):
         unit = 'TB'
         factor = 1024 * 1024 * 1024 * 1024
     return '%.1f %s' % (float(size) / factor, unit)
-
-def copy_file(source, target):
-    '''
-    Copy file with progress report
-    '''
-    if os.path.isfile(source):
-        file_size = os.path.getsize(source)
-
-    source_file = open(source, "rb")
-    target_file = open(target, "wb")
-    data_read = 0
-    while True:
-        data = source_file.read(1024**2)
-        data_read += 1
-        if data == "":
-            break
-        target_file.write(data)
-        print data_read
-        if data_read >= file_size:
-            break
-    source_file.close()
-    target_file.close()
