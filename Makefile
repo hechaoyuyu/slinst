@@ -15,13 +15,14 @@ install:
 	python -u local.py
 	install -d $(DESTDIR)$(PREFIX)/share/dbus-1/system-services $(DESTDIR)/etc/dbus-1/system.d \
 	           $(DESTDIR)$(PREFIX)/share/polkit-1/actions $(DESTDIR)$(LIBDIR) $(DESTDIR)$(PREFIX)/share \
-		   $(DESTDIR)$(PREFIX)/bin/ $(DESTDIR)$(PREFIX)/share/applications/  $(DESTDIR)$(PREFIX)/share/pixmaps
+		   $(DESTDIR)$(PREFIX)/bin/ $(DESTDIR)$(PREFIX)/share/applications/  $(DESTDIR)$(PREFIX)/share/pixmaps $(DESTDIR)/etc/grub.d/
 	-cp -r src/dbus/com.ylmf.yinst.service $(DESTDIR)$(PREFIX)/share/dbus-1/system-services
 	-cp -r src/dbus/com.ylmf.yinst.conf $(DESTDIR)/etc/dbus-1/system.d
 	-cp -r src/dbus/com.ylmf.yinst.policy $(DESTDIR)$(PREFIX)/share/polkit-1/actions
 	-cp -r src/lib/yinst4linux                 $(DESTDIR)$(LIBDIR)
 	-cp -r src/lib/yinst4linux/yinst4linux.png $(DESTDIR)$(PREFIX)/share/pixmaps/
 	-cp -r src/share/locale $(DESTDIR)$(PREFIX)/share
+	-cp -r src/lib/yinst4linux/05_livecd   $(DESTDIR)/etc/grub.d/
 	-install src/bin/yinst $(DESTDIR)$(PREFIX)/bin/
 	-install src/bin/yinst4linux.desktop $(DESTDIR)$(PREFIX)/share/applications/
 	
