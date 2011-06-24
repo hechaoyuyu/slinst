@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 #coding=utf-8
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
@@ -39,8 +39,8 @@ class linst(dbus.service.Object):
         f.write(content)
         f.close()
         os.system("chmod +x %s" %filename)
-        os.system("update-grub")
-        #sys.exit()
+        os.system("/bin/sh -c /usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg > /boot/grub/grub.cfg")
+        sys.exit()
 
     def read_file(self,file_path):
         f = open(file_path, 'r')
