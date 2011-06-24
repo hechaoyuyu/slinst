@@ -1,0 +1,8 @@
+#!/bin/sh
+exec tail -n +3 $0
+menuentry "Ylmf OS(livecd mode)" {
+    search -s -f -n $(iso_path)
+    loopback	loop $(iso_path)
+    linux	(loop)/casper/vmlinuz iso-scan/filename=$(iso_path) noprompt quiet splash  boot=casper ro locale=$(locale) layoutcode=us rootflags=syncio
+    initrd 	(loop)/casper/initrd.img
+}

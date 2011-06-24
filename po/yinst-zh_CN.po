@@ -1,0 +1,47 @@
+msgid "Ylmf OS install programs"
+msgstr "Ylmf OS 安装"
+
+msgid "To try or install linux from a linux."
+msgstr "将安装 linux 系统"
+
+msgid "iso file :"
+msgstr "镜像文件："
+
+msgid "install"
+msgstr "安装"
+
+msgid "Installing"
+msgstr "正在安装"
+
+msgid "Complete:"
+msgstr "完成："
+
+msgid "Installation complete"
+msgstr "安装完成"
+
+msgid "The installation is complete.  You may now reboot your computer"
+msgstr "安装完成，现在您可以重新启动计算机。"
+
+msgid "Reboot"
+msgstr "重启"
+
+msgid "choose a iso file"
+msgstr "选择 ISO 镜像"
+
+msgid "ISO Images"
+msgstr "磁盘镜像"
+
+msgid "Image"
+msgstr "镜像文件"
+
+msgid "OS Version"
+msgstr "系统版本"
+
+msgid "Size"
+msgstr "镜像大小"
+
+msgid "Copying files..."
+msgstr "正在复制文件..."
+
+msgid "Setup grub..."
+msgstr "正在设置启动项..."

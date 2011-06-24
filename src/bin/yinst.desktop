@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Yinst
+Name[zh_CN]=Yinst安装器
+Comment=Ylmf OS installer
+Comment[zh_CN]=Ylmf 系统安装器
+Exec=yinst
+Icon=/usr/lib/yinst/yinst.ico
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+StartupNotify=true
+Categories=System;
+
