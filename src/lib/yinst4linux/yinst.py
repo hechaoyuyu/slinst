@@ -25,9 +25,6 @@ class yinst():
         self.window.set_border_width(12)
         self.window.set_default_size(320,180)
 	
-	#不可调整窗口大小
-        self.window.set_resizable(False)
-	
         #设置窗口图标
         gtk.window_set_default_icon_from_file('yinst4linux.png')
         # set window center
@@ -89,7 +86,7 @@ class yinst():
         self.install_window.set_modal(True)
 
         #不显示关闭按钮
-        self.install_window.set_deletable(False)
+        #self.install_window.set_deletable(False)
 
         #进度条box
         self.progress_vbox = gtk.VBox(False,5)
