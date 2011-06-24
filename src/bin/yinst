@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /usr/lib/yinst
+cd /usr/lib/yinst4linux
 ./yinst.py
 
 
