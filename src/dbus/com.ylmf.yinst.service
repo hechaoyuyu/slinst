@@ -1,4 +1,4 @@
 [D-BUS Service]
 Name=com.ylmf.yinst
-Exec=/usr/lib/yinst/yconf.py
+Exec=/usr/lib/yinst4linux/yconf.py
 User=root

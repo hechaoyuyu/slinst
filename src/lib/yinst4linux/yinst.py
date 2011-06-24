@@ -82,6 +82,9 @@ class yinst():
         self.install_window.set_title(_("Installing"))
         self.install_window.connect_object('destroy',gtk.Widget.destroy,self.window)
 
+	#不可调整窗口大小
+        self.install_window.set_resizable(False)
+
         #设置为模态窗口（类似于对话框）
         self.install_window.set_modal(True)
 
