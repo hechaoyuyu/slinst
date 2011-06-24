@@ -19,8 +19,8 @@ install:
 	-cp -r src/dbus/com.ylmf.yinst.service $(DESTDIR)$(PREFIX)/share/dbus-1/system-services
 	-cp -r src/dbus/com.ylmf.yinst.conf $(DESTDIR)/etc/dbus-1/system.d
 	-cp -r src/dbus/com.ylmf.yinst.policy $(DESTDIR)$(PREFIX)/share/polkit-1/actions
-	-cp -r src/lib/yinst4linux $(DESTDIR)$(LIBDIR)
-	-cp -r src/lib/yinst4linux $(DESTDIR)$(PREFIX)/share/pixmaps/
+	-cp -r src/lib/yinst4linux                 $(DESTDIR)$(LIBDIR)
+	-cp -r src/lib/yinst4linux/yinst4linux.png $(DESTDIR)$(PREFIX)/share/pixmaps/
 	-cp -r src/share/locale $(DESTDIR)$(PREFIX)/share
 	-install src/bin/yinst $(DESTDIR)$(PREFIX)/bin/
 	-install src/bin/yinst4linux.desktop $(DESTDIR)$(PREFIX)/share/applications/
