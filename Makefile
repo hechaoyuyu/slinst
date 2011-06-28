@@ -13,7 +13,7 @@ all:
 # install
 install:
 	python -u local.py
-	install -d $(DESTDIR)$(PREFIX)/share/dbus-1/system-services $(DESTDIR)/etc/dbus-1/system.d \
+	-install -d $(DESTDIR)$(PREFIX)/share/dbus-1/system-services $(DESTDIR)/etc/dbus-1/system.d \
 	           $(DESTDIR)$(PREFIX)/share/polkit-1/actions $(DESTDIR)$(LIBDIR) $(DESTDIR)$(PREFIX)/share \
 		   $(DESTDIR)$(PREFIX)/bin/ $(DESTDIR)$(PREFIX)/share/applications/  $(DESTDIR)$(PREFIX)/share/pixmaps
 	-cp -r src/dbus/com.ylmf.yinst.service $(DESTDIR)$(PREFIX)/share/dbus-1/system-services
@@ -33,7 +33,7 @@ uninstall:
 	rm -vf $(DESTDIR)$(PREFIX)/share/dbus-1/system-services/com.ylmf.yinst.service
 	rm -vf $(DESTDIR)/etc/dbus-1/system.d/com.ylmf.yinst.conf
 	rm -vf $(DESTDIR)$(PREFIX)/share/polkit-1/actions/com.ylmf.yinst.policy
-	rm -rf $(DESTDIR)$(LIBDIR)/yinst
+	rm -rf $(DESTDIR)$(LIBDIR)/yinst4linux
 	rm -rf $(DESTDIR)$(PREFIX)/share/applications/yinst4linux.desktop
 	rm -rf $(DESTDIR)$(PREFIX)/bin/yinst
 	rm -vf $(DESTDIR)/etc/grub.d/10_livecd
