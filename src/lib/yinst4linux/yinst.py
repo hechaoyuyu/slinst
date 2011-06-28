@@ -24,7 +24,7 @@ class yinst():
         #主界面
         self.window = gtk.Window()
         self.window.set_border_width(12)
-       	self.window.set_size_request(360,180)
+        self.window.set_size_request(360,180)
         self.window.set_resizable(False)
 	
         #设置窗口图标
