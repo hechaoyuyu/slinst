@@ -335,6 +335,7 @@ class yinst():
         self.progressbar.set_fraction(1)
         self.progress_cancel.hide()
         self.progress_reboot.show()
+	self.progress_quit.show()
         logging.debug("Installation complete")
 
     def grub_config(self, target):
