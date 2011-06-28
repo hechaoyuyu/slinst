@@ -24,7 +24,8 @@ class yinst():
         #主界面
         self.window = gtk.Window()
         self.window.set_border_width(12)
-        self.window.set_default_size(320,180)
+       	self.window.set_size_request(360,180)
+        self.window.set_resizable(False)
 	
         #设置窗口图标
         gtk.window_set_default_icon_from_file('yinst4linux.png')
@@ -42,7 +43,7 @@ class yinst():
         self.label_des.set_markup('<big><b>' + _("To try or install linux from a linux.") + '</b></big>')
         self.main_vbox.pack_start(self.label_des, False, False)
 
-        self.iso_vbox = gtk.VBox(False,2)
+        self.iso_vbox = gtk.VBox(False,4)
         self.main_vbox.pack_start(self.iso_vbox, False, False)
 
         self.label_iso = gtk.Label("")
@@ -62,16 +63,18 @@ class yinst():
         self.iso_vbox.pack_start(self.scroll_win,False,False)
 
         self.open_button = gtk.Button(stock=gtk.STOCK_ADD)
+	self.open_button.set_size_request(72, 30)
         self.open_button.connect("clicked",self.add_iso)
 
         self.hbox_button = gtk.HBox(False,5)
-        self.hbox_button.pack_end(self.open_button,False,False)
+        self.hbox_button.pack_start(self.open_button,False,False)
 
         self.install_button = gtk.Button(_("install"))
+	self.install_button.set_size_request(72, 30)
         self.install_button.connect("clicked",self.install)
         self.install_button.set_sensitive(False)
 
-        self.hbox_button.pack_start(self.install_button,False,False)
+        self.hbox_button.pack_end(self.install_button,False,False)
         self.iso_vbox.pack_start(self.hbox_button)
 
         #安装界面
@@ -81,7 +84,7 @@ class yinst():
 
         #设置窗口标题
         self.install_window.set_title(_("Installing"))
-        self.install_window.connect_object('destroy',gtk.Widget.destroy,self.window)
+        self.install_window.connect('destroy',gtk.main_quit)
 
 	#不可调整窗口大小
         self.install_window.set_resizable(False)
@@ -117,8 +120,15 @@ class yinst():
 
         #重启按钮
         self.progress_reboot = gtk.Button(_("Reboot"))
+	self.progress_reboot.set_size_request(72, 30)
         self.progress_reboot.connect("clicked",self.reboot)
         self.progress_hbox.pack_end(self.progress_reboot,False,False)
+
+	#稍后重启
+        self.progress_quit = gtk.Button(_("Quit"))
+        self.progress_quit.set_size_request(72, 30)
+        self.progress_quit.connect("clicked",self.install_exit)
+        self.progress_hbox.pack_end(self.progress_quit,False,False)
 
         self.progress_vbox.pack_start(self.progress_hbox,False,False)
 
@@ -264,6 +274,7 @@ class yinst():
         self.window.hide()
         self.install_window.show_all()
         self.progress_reboot.hide()
+        self.progress_quit.hide()
 
         isopath = self.get_iso()
         targetpath = globals.configdir + "/" +"livecd.iso"
@@ -344,7 +355,7 @@ class yinst():
         self.progress_message(_('Setup grub...'))
         language, encoding = locale.getdefaultlocale()
         zh_cn = "%s.%s" %(language, encoding)
-        filename = "/etc/grub.d/05_livecd"
+        filename = "/etc/grub.d/10_livecd"
 
         try:
             logging.debug("callable dbus")

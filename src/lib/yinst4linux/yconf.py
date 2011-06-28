@@ -27,7 +27,7 @@ class linst(dbus.service.Object):
     @dbus.service.method(YINST_IFACE)
     def write_file(self,isopath, locale, filename):
 
-        template_file = "%s/05_livecd" %root_dir
+        template_file = "%s/10_livecd" %root_dir
         template = self.read_file(template_file)
         dic = dict(iso_path = isopath,locale = locale)
         content = template
@@ -38,8 +38,8 @@ class linst(dbus.service.Object):
         f = open(filename,'w+')
         f.write(content)
         f.close()
-        os.system("chmod +x %s" %filename)
-        os.system("/bin/sh -c /usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg > /boot/grub/grub.cfg")
+        os.chmod(filename,0766)
+        os.system("update-grub")
         sys.exit()
 
     def read_file(self,file_path):

@@ -23,7 +23,10 @@ msgid "The installation is complete.  You may now reboot your computer"
 msgstr "安装完成，现在您可以重新启动计算机。"
 
 msgid "Reboot"
-msgstr "重启"
+msgstr "立即重启"
+
+msgid "Quit"
+msgstr "稍后重启"
 
 msgid "choose a iso file"
 msgstr "选择 ISO 镜像"
