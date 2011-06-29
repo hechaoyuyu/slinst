@@ -354,7 +354,7 @@ class yinst():
 	flag = "yinst_false"
 	if get_home():
             target = target.replace("/home","")
-	    flag = "yinst_true"
+            flag = "yinst-true"
         self.progress_message(_('Setup grub...'))
         language, encoding = locale.getdefaultlocale()
         zh_cn = "%s.%s" %(language, encoding)
