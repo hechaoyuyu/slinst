@@ -37,7 +37,7 @@ uninstall:
 	rm -rf $(DESTDIR)$(PREFIX)/share/applications/yinst4linux.desktop
 	rm -rf $(DESTDIR)$(PREFIX)/bin/yinst
 	rm -vf $(DESTDIR)/etc/grub.d/10_livecd
-	rm -rf ~/.yinst
+	rm -rf ~/yinst
 	update-grub
 	
 
