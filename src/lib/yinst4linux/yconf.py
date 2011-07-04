@@ -25,7 +25,7 @@ class linst(dbus.service.Object):
         self.polkit = None
 
     @dbus.service.method(YINST_IFACE)
-    def write_file(self, isopath, flag, locale, initrd filename):
+    def write_file(self, isopath, flag, locale, initrd, filename):
 
         template_file = "%s/10_livecd" %root_dir
         template = self.read_file(template_file)
