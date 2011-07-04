@@ -4,5 +4,5 @@ menuentry "Ylmf OS(livecd mode)" {
     search -s -f -n $(iso_path)
     loopback	loop $(iso_path)
     linux	(loop)/casper/vmlinuz iso-scan/filename=$(iso_path) $(flags) quiet splash  boot=casper ro locale=$(locale) layoutcode=us rootflags=syncio
-    initrd 	(loop)/casper/initrd.img
+    initrd 	(loop)$(initrds)
 }

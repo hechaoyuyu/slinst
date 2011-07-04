@@ -25,11 +25,11 @@ class linst(dbus.service.Object):
         self.polkit = None
 
     @dbus.service.method(YINST_IFACE)
-    def write_file(self, isopath, flag, locale, filename):
+    def write_file(self, isopath, flag, locale, initrd filename):
 
         template_file = "%s/10_livecd" %root_dir
         template = self.read_file(template_file)
-        dic = dict(iso_path = isopath,flags = flag,locale = locale)
+        dic = dict(iso_path = isopath,flags = flag,locale = locale,initrds = initrd)
         content = template
         for k,v in dic.items():
             k = "$(%s)" % k

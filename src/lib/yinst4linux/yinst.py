@@ -339,7 +339,7 @@ class yinst():
         logging.debug("Installation complete")
 
     def grub_config(self, target):
-	
+        logging.debug("setup grub")
 	def get_home():
             reg = re.compile("/home")
             file = open("/etc/fstab")
@@ -349,8 +349,13 @@ class yinst():
                 if reg.search(line) != None:
                     logging.debug(line)
                     return True
-	
-        logging.debug("setup grub")
+        import commands
+        err,out = commands.getstatusoutput("isoinfo -J -i %s -f | grep initrd" %target)
+        if err:
+            initrd = "/casper/initrd.img"
+        else:initrd = out
+        logging.debug("initrd = %s" %initrd)	
+        
 	flag = "yinst_false"
 	if get_home():
             target = target.replace("/home","")
@@ -365,7 +370,7 @@ class yinst():
             bus = dbus.SystemBus()
             obj = bus.get_object('com.ylmf.yinst','/com/ylmf/yinst')
             face = dbus.Interface(obj, 'com.ylmf.yinst')
-            face.write_file(target, flag, zh_cn, filename)
+            face.write_file(target, flag, zh_cn, initrd, filename)
         except dbus.DBusException:
             logging.error("dbus error")
 
