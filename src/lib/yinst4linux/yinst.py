@@ -362,6 +362,8 @@ class yinst():
             flag = "yinst-true"
         self.progress_message(_('Setup grub...'))
         language, encoding = locale.getdefaultlocale()
+	if encoding == "UTF8":
+	    encoding = "UTF-8"
         zh_cn = "%s.%s" %(language, encoding)
         filename = "/etc/grub.d/10_livecd"
 
