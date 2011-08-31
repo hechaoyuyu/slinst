@@ -306,7 +306,7 @@ class yinst():
         self.progress_message(_('Copying files...'))
 
         if os.path.isfile(source):
-            file_size = os.path.getsize(source) / (1024**2)*1.0
+            file_size = float(os.path.getsize(source)) / (1024**2)
 
         source_file = open(source, "rb")
         target_file = open(target, "wb")

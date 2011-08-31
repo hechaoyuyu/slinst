@@ -62,9 +62,6 @@ def get_gnome_drive(self, dev):
     return ('', '')
 
 def format_size(size):
-    """Format a partition size."""
-    # Taken from ubiquity's ubiquity/misc.py
-    # TODO evand 2009-07-28: Localized size formatting.
     if size < 1024:
         unit = 'B'
         factor = 1
