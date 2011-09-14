@@ -12,6 +12,10 @@ import dbus.service
 import os
 import sys
 import dbus.mainloop.glib
+import logging
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)-8s %(message)s',
+                    filename='/tmp/yinst.log')
 
 YINST_IFACE = 'com.ylmf.yinst'
 YINST_PATH = '/com/ylmf/yinst'
@@ -23,6 +27,10 @@ class linst(dbus.service.Object):
         dbus.service.Object.__init__(self, bus_name, YINST_PATH)
         self.dbus_info = None
         self.polkit = None
+
+    @dbus.service.method(YINST_IFACE,in_signature='',out_signature='',sender_keyword='sender')
+    def exit(self,sender=None):
+	self.check_polkit(sender)
 
     @dbus.service.method(YINST_IFACE,in_signature='',out_signature='',sender_keyword='sender')
     def write_file(self, isopath, flag, locale, initrd, filename, sender=None):
@@ -52,14 +60,15 @@ class linst(dbus.service.Object):
         
         if not sender: raise ValueError('sender == None')
         logging.info("sender == %s" %sender)
+	
         obj = dbus.SystemBus().get_object('org.freedesktop.PolicyKit1', '/org/freedesktop/PolicyKit1/Authority')
         obj = dbus.Interface(obj, 'org.freedesktop.PolicyKit1.Authority')
         (granted, _, details) = obj.CheckAuthorization(
                 ('system-bus-name', {'name': sender}), 'com.ylmf.yinst', {}, dbus.UInt32(1), '', timeout=36000)
-        logging.debug(details)
+        logging.debug("details == %s" %details)
         if not granted:
             logging.debug('_check_polkit_privilege: sender %s on connection %s ' %(sender,str(details)))
-            raise dbus.DBusException, 'com.ylmf.yinst.Error.NotAuthorized'
+	    sys.exit()
 
 if __name__ == "__main__":
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)

@@ -371,12 +371,11 @@ class yinst():
             bus = dbus.SystemBus()
             obj = bus.get_object('com.ylmf.yinst','/com/ylmf/yinst')
             face = dbus.Interface(obj, 'com.ylmf.yinst')
-            face.write_file(target, zh_cn, filename, flag, initrd)
+            face.write_file(target, flag, zh_cn, initrd, filename)
         except dbus.DBusException,e:
-            logging.error(e)
-            self.install_exit()
+            logging.error(e)      
 
-        self.progress_info.set_markup(_("The installation is complete.  You may now reboot your computer"))
+	self.progress_info.set_markup(_("The installation is complete.  You may now reboot your computer"))
 
     def get_iso(self):
 
