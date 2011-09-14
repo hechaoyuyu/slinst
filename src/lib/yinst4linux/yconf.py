@@ -24,9 +24,9 @@ class linst(dbus.service.Object):
         self.dbus_info = None
         self.polkit = None
 
-    @dbus.service.method(YINST_IFACE)
-    def write_file(self, isopath, flag, locale, initrd, filename):
-
+    @dbus.service.method(YINST_IFACE,in_signature='',out_signature='',sender_keyword='sender')
+    def write_file(self, isopath, flag, locale, initrd, filename, sender=None):
+        self.check_polkit(sender)
         template_file = "%s/10_livecd" %root_dir
         template = self.read_file(template_file)
         dic = dict(iso_path = isopath,flags = flag,locale = locale,initrds = initrd)
@@ -47,6 +47,19 @@ class linst(dbus.service.Object):
         content = f.read()
         f.close()
         return content
+
+    def check_polkit(self,sender):
+        
+        if not sender: raise ValueError('sender == None')
+        logging.info("sender == %s" %sender)
+        obj = dbus.SystemBus().get_object('org.freedesktop.PolicyKit1', '/org/freedesktop/PolicyKit1/Authority')
+        obj = dbus.Interface(obj, 'org.freedesktop.PolicyKit1.Authority')
+        (granted, _, details) = obj.CheckAuthorization(
+                ('system-bus-name', {'name': sender}), 'com.ylmf.yinst', {}, dbus.UInt32(1), '', timeout=36000)
+        logging.debug(details)
+        if not granted:
+            logging.debug('_check_polkit_privilege: sender %s on connection %s ' %(sender,str(details)))
+            raise dbus.DBusException, 'com.ylmf.yinst.Error.NotAuthorized'
 
 if __name__ == "__main__":
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)

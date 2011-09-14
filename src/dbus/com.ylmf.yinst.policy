@@ -8,7 +8,7 @@
   <vendor_url>http://www.ylmf.org</vendor_url>
   <icon_name>yinst</icon_name>
 
-  <action id="com.ylmf.yinst.grub">
+  <action id="com.ylmf.yinst">
     <_description>Install the grub</_description>
     <_message>System policy prevents installing the grub</_message>
     <defaults>

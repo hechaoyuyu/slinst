@@ -366,15 +366,15 @@ class yinst():
 	    encoding = "UTF-8"
         zh_cn = "%s.%s" %(language, encoding)
         filename = "/etc/grub.d/10_livecd"
-
         try:
             logging.debug("callable dbus")
             bus = dbus.SystemBus()
-            obj = bus.get_object('com.ylmf.yinst','/com/ylmf/yinst')
+            obj = bus.get_object('com.ylmf.yinst','/')
             face = dbus.Interface(obj, 'com.ylmf.yinst')
-            face.write_file(target, flag, zh_cn, initrd, filename)
-        except dbus.DBusException:
-            logging.error("dbus error")
+            face.write_file(target, zh_cn, filename, flag, initrd)
+        except dbus.DBusException,e:
+            logging.error(e)
+            self.install_exit()
 
         self.progress_info.set_markup(_("The installation is complete.  You may now reboot your computer"))
 
