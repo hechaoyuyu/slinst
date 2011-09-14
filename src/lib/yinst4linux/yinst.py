@@ -369,7 +369,7 @@ class yinst():
         try:
             logging.debug("callable dbus")
             bus = dbus.SystemBus()
-            obj = bus.get_object('com.ylmf.yinst','/')
+            obj = bus.get_object('com.ylmf.yinst','/com/ylmf/yinst')
             face = dbus.Interface(obj, 'com.ylmf.yinst')
             face.write_file(target, zh_cn, filename, flag, initrd)
         except dbus.DBusException,e:
