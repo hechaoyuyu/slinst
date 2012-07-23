@@ -17,8 +17,8 @@ logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(levelname)-8s %(message)s',
                     filename='/tmp/yinst.log')
 
-YINST_IFACE = 'com.ylmf.yinst'
-YINST_PATH = '/com/ylmf/yinst'
+YINST_IFACE = 'com.startos.yinst'
+YINST_PATH = '/com/startos/yinst'
 root_dir = os.path.abspath(os.path.dirname(__file__))
 
 class linst(dbus.service.Object):
@@ -64,7 +64,7 @@ class linst(dbus.service.Object):
         obj = dbus.SystemBus().get_object('org.freedesktop.PolicyKit1', '/org/freedesktop/PolicyKit1/Authority')
         obj = dbus.Interface(obj, 'org.freedesktop.PolicyKit1.Authority')
         (granted, _, details) = obj.CheckAuthorization(
-                ('system-bus-name', {'name': sender}), 'com.ylmf.yinst', {}, dbus.UInt32(1), '', timeout=36000)
+                ('system-bus-name', {'name': sender}), 'com.startos.yinst', {}, dbus.UInt32(1), '', timeout=36000)
         logging.debug("details == %s" %details)
         if not granted:
             logging.debug('_check_polkit_privilege: sender %s on connection %s ' %(sender,str(details)))

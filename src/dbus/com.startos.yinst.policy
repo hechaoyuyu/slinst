@@ -4,10 +4,10 @@
  "http://www.freedesktop.org/standards/PolicyKit/1.0/policyconfig.dtd">
 <policyconfig>
 
-  <vendor>Ylmf OS LiveCD</vendor>
-  <vendor_url>http://www.ylmf.org</vendor_url>
+  <vendor>StartOS LiveCD</vendor>
+  <vendor_url>http://www.startos.org</vendor_url>
 
-  <action id="com.ylmf.yinst">
+  <action id="com.startos.yinst">
     <description>Install the grub</description>
     <message>System policy prevents installing the grub</message>
     <defaults>

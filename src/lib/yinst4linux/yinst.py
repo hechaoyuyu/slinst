@@ -23,9 +23,10 @@ class yinst():
         
         #主界面
         self.window = gtk.Window()
+        #self.window.set_decorated(False)
         self.window.set_border_width(12)
         self.window.set_size_request(360,180)
-        self.window.set_resizable(False)
+        #self.window.set_resizable(False)
 	
         #设置窗口图标
         gtk.window_set_default_icon_from_file('yinst4linux.png')
@@ -33,7 +34,7 @@ class yinst():
         self.window.set_position(gtk.WIN_POS_CENTER_ALWAYS)
 
         # set window title
-        self.window.set_title(_("Ylmf OS install programs"))
+        self.window.set_title(_("StartOS install programs"))
         self.window.connect('destroy',gtk.main_quit)
 
         self.main_vbox = gtk.VBox(False,5)
@@ -54,7 +55,7 @@ class yinst():
 
         self.scroll_win = gtk.ScrolledWindow()
         self.scroll_win.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.scroll_win.set_shadow_type (gtk.SHADOW_IN)
+        self.scroll_win.set_shadow_type(gtk.SHADOW_IN)
 
         list_store = gtk.ListStore(str)
 	self.treeview = gtk.TreeView(list_store)
@@ -69,6 +70,7 @@ class yinst():
         self.hbox_button = gtk.HBox(False,5)
         self.hbox_button.pack_start(self.open_button,False,False)
 
+        #安装button
         self.install_button = gtk.Button(_("install"))
 	self.install_button.set_size_request(72, 30)
         self.install_button.connect("clicked",self.install)
@@ -87,7 +89,7 @@ class yinst():
         self.install_window.connect('destroy',gtk.main_quit)
 
 	#不可调整窗口大小
-        self.install_window.set_resizable(False)
+        #self.install_window.set_resizable(False)
 
         #设置为模态窗口（类似于对话框）
         self.install_window.set_modal(True)
@@ -369,8 +371,8 @@ class yinst():
         try:
             logging.debug("callable dbus")
             bus = dbus.SystemBus()
-            obj = bus.get_object('com.ylmf.yinst','/com/ylmf/yinst')
-            face = dbus.Interface(obj, 'com.ylmf.yinst')
+            obj = bus.get_object('com.startos.yinst','/com/startos/yinst')
+            face = dbus.Interface(obj, 'com.startos.yinst')
             face.write_file(target, flag, zh_cn, initrd, filename)
         except dbus.DBusException,e:
             logging.error(e)      

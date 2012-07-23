@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Yinst
 Name[zh_CN]=Yinst
-Comment=
-Comment[zh_CN]=在其它发行版中安装 Ylmf OS
+Comment=StartOS installer
+Comment[zh_CN]=在其它发行版中安装StartOS操作系统
 Exec=yinst
 Icon=yinst4linux
 Terminal=false

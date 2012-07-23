@@ -1,5 +1,5 @@
-msgid "Ylmf OS install programs"
-msgstr "Ylmf OS 安装"
+msgid "StartOS install programs"
+msgstr "StartOS安装"
 
 msgid "To try or install linux from a linux."
 msgstr "将安装 linux 系统"

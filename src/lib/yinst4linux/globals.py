@@ -6,7 +6,7 @@ __author__="hechao"
 __date__ ="$2011-6-8 14:43:13$"
 
 global version,appdirname
-version = "4.0"
+version = "5.0"
 appdirname="yinst"
 
 homedir = os.path.expanduser("~")
